@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexass — Il futuro dell'intermediazione assicurativa</title>
+  <meta name="description" content="Nexass è l'ecosistema tecnologico per intermediari assicurativi: gestionale SaaS e software di emissione RCA e CVT in un'unica piattaforma modulare." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            nexass: {
+              dark:   '#2B2F33',
+              darker: '#1E2226',
+              orange: '#F07020',
+              'orange-light': '#FF8C3A',
+              grey:   '#F0F1F2',
+              muted:  '#6B7280',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+
+    .grid-bg {
+      background-color: #F0F1F2;
+      background-image:
+        linear-gradient(rgba(43,47,51,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(43,47,51,0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .orange-glow {
+      box-shadow: 0 0 40px rgba(240,112,32,0.25);
+    }
+
+    @keyframes pulse-bar {
+      0%, 100% { transform: scaleX(0.6); opacity: 0.7; }
+      50%       { transform: scaleX(1);   opacity: 1; }
+    }
+    .pulse-bar { animation: pulse-bar 2s ease-in-out infinite; transform-origin: left; }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fade-up 0.7s ease-out both; }
+    .delay-1 { animation-delay: 0.15s; }
+    .delay-2 { animation-delay: 0.30s; }
+    .delay-3 { animation-delay: 0.45s; }
+    .delay-4 { animation-delay: 0.60s; }
+  </style>
+</head>
+<body class="font-sans text-nexass-dark bg-white">
+
+  <!-- ═══════════════════════════════════════════════
+       NAV
+  ═══════════════════════════════════════════════ -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-nexass-dark/10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <!-- Logo text -->
+      <div class="flex items-center gap-1 select-none">
+        <span class="text-2xl font-black tracking-tight text-nexass-dark">NEX</span>
+        <span class="relative">
+          <span class="text-2xl font-black tracking-tight text-nexass-dark">A</span>
+          <span class="absolute -top-1 -right-0.5 w-2.5 h-2.5 bg-nexass-orange rounded-full"></span>
+        </span>
+        <span class="text-2xl font-black tracking-tight text-nexass-dark">SS</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-nexass-muted">
+        <a href="#prodotti" class="hover:text-nexass-dark transition-colors">Prodotti</a>
+        <a href="#come-funziona" class="hover:text-nexass-dark transition-colors">Come funziona</a>
+        <a href="#brand" class="hover:text-nexass-dark transition-colors">Brand</a>
+        <a href="#contatti" class="bg-nexass-orange text-white px-4 py-2 rounded-lg hover:bg-nexass-orange-light transition-colors">
+          Richiedi demo
+        </a>
+      </div>
+      <button class="md:hidden text-nexass-dark" onclick="toggleMenu()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-3 text-sm font-medium border-t border-nexass-dark/10 pt-4">
+      <a href="#prodotti" class="block text-nexass-muted hover:text-nexass-dark" onclick="toggleMenu()">Prodotti</a>
+      <a href="#come-funziona" class="block text-nexass-muted hover:text-nexass-dark" onclick="toggleMenu()">Come funziona</a>
+      <a href="#brand" class="block text-nexass-muted hover:text-nexass-dark" onclick="toggleMenu()">Brand</a>
+      <a href="#contatti" class="block bg-nexass-orange text-white px-4 py-2 rounded-lg text-center" onclick="toggleMenu()">Richiedi demo</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════ -->
+  <section class="grid-bg min-h-screen flex items-center pt-20">
+    <div class="max-w-6xl mx-auto px-6 py-24 text-center">
+
+      <!-- Badge -->
+      <div class="fade-up inline-flex items-center gap-2 bg-nexass-orange/10 border border-nexass-orange/30 text-nexass-orange text-sm font-semibold px-4 py-2 rounded-full mb-8">
+        <span class="w-2 h-2 bg-nexass-orange rounded-full pulse-bar inline-block"></span>
+        In arrivo — Early Access aperto
+      </div>
+
+      <!-- Logo grande -->
+      <div class="fade-up delay-1 flex items-center justify-center gap-2 mb-6">
+        <span class="text-7xl md:text-9xl font-black tracking-tighter text-nexass-dark leading-none">NEX</span>
+        <span class="relative">
+          <span class="text-7xl md:text-9xl font-black tracking-tighter text-nexass-dark leading-none">A</span>
+          <span class="absolute top-2 right-0 w-5 h-5 md:w-7 md:h-7 bg-nexass-orange rounded-full"></span>
+        </span>
+        <span class="text-7xl md:text-9xl font-black tracking-tighter text-nexass-dark leading-none">SS</span>
+      </div>
+
+      <!-- Tagline -->
+      <p class="fade-up delay-2 text-xl md:text-2xl font-medium text-nexass-muted max-w-2xl mx-auto mb-4">
+        Il futuro dell'intermediazione assicurativa è in arrivo
+      </p>
+      <p class="fade-up delay-3 text-base md:text-lg text-nexass-muted/70 max-w-xl mx-auto mb-10">
+        L'ecosistema modulare che unisce gestione del portafoglio e emissione di polizze RCA e CVT in un'unica piattaforma.
+      </p>
+
+      <!-- CTA buttons -->
+      <div class="fade-up delay-4 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#contatti" class="bg-nexass-orange text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-nexass-orange-light transition-all orange-glow hover:scale-105 active:scale-95">
+          Richiedi accesso anticipato
+        </a>
+        <a href="#prodotti" class="bg-white border-2 border-nexass-dark/20 text-nexass-dark px-8 py-4 rounded-xl font-semibold text-lg hover:border-nexass-dark/50 transition-all hover:scale-105 active:scale-95">
+          Scopri i prodotti
+        </a>
+      </div>
+
+      <!-- Progress bar decorativa -->
+      <div class="mt-16 max-w-sm mx-auto">
+        <div class="h-1 bg-nexass-dark/10 rounded-full overflow-hidden">
+          <div class="h-full bg-nexass-orange rounded-full pulse-bar w-3/4"></div>
+        </div>
+        <p class="text-xs text-nexass-muted/50 mt-2">Sviluppo in corso</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       IL PROBLEMA
+  ═══════════════════════════════════════════════ -->
+  <section class="bg-nexass-dark py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <span class="text-nexass-orange text-sm font-bold uppercase tracking-widest">Il problema</span>
+        <h2 class="text-3xl md:text-4xl font-black text-white mt-3">
+          L'intermediazione assicurativa è ancora bloccata nel passato
+        </h2>
+        <p class="text-white/60 mt-4 max-w-2xl mx-auto text-lg">
+          Gli agenti e i broker gestiscono portafogli complessi con strumenti inadeguati, perdendo tempo e opportunità ogni giorno.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Pain 1 -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/8 transition-colors">
+          <div class="w-12 h-12 bg-nexass-orange/20 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-nexass-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-white font-bold text-xl mb-3">Emissione lenta e manuale</h3>
+          <p class="text-white/50 leading-relaxed">
+            Quotare e emettere polizze RCA o CVT richiede ore di lavoro su piattaforme multiple, con rischio di errori e dati duplicati.
+          </p>
+        </div>
+
+        <!-- Pain 2 -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/8 transition-colors">
+          <div class="w-12 h-12 bg-nexass-orange/20 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-nexass-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-white font-bold text-xl mb-3">Gestionale frammentato</h3>
+          <p class="text-white/50 leading-relaxed">
+            Fogli Excel, gestionali obsoleti e archivi cartacei rendono impossibile avere una visione completa e aggiornata del portafoglio.
+          </p>
+        </div>
+
+        <!-- Pain 3 -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/8 transition-colors">
+          <div class="w-12 h-12 bg-nexass-orange/20 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-nexass-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="text-white font-bold text-xl mb-3">Zero automazione</h3>
+          <p class="text-white/50 leading-relaxed">
+            Rinnovi, scadenze e cross-selling gestiti a mano. Ogni opportunità mancata è fatturato perso e clienti che se ne vanno.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       PRODOTTI
+  ═══════════════════════════════════════════════ -->
+  <section id="prodotti" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <span class="text-nexass-orange text-sm font-bold uppercase tracking-widest">I prodotti</span>
+        <h2 class="text-3xl md:text-4xl font-black text-nexass-dark mt-3">
+          La famiglia Nexass
+        </h2>
+        <p class="text-nexass-muted mt-4 max-w-2xl mx-auto text-lg">
+          Due prodotti pensati per lavorare insieme, o in autonomia. Un ecosistema che cresce con te.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+
+        <!-- Prodotto 1: Emissione -->
+        <div class="relative bg-nexass-grey rounded-3xl p-10 border-2 border-transparent hover:border-nexass-orange/30 transition-all group">
+          <div class="w-14 h-14 bg-nexass-orange rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <div class="flex items-center gap-3 mb-2">
+            <h3 class="text-2xl font-black text-nexass-dark">Nexass Emit</h3>
+            <span class="bg-nexass-orange/10 text-nexass-orange text-xs font-bold px-2 py-1 rounded-full">RCA · CVT</span>
+          </div>
+          <p class="text-nexass-muted text-lg leading-relaxed mb-8">
+            Il motore di quotazione e emissione polizze auto. Confronta tariffe, emetti in pochi click e consegna la polizza direttamente al cliente.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-nexass-dark/80">
+              <span class="w-5 h-5 bg-nexass-orange rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </span>
+              Quotazione RCA e CVT in tempo reale
+            </li>
+            <li class="flex items-center gap-3 text-nexass-dark/80">
+              <span class="w-5 h-5 bg-nexass-orange rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </span>
+              Emissione digitale con firma elettronica
+            </li>
+            <li class="flex items-center gap-3 text-nexass-dark/80">
+              <span class="w-5 h-5 bg-nexass-orange rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </span>
+              Multi-compagnia: confronto istantaneo
+            </li>
+            <li class="flex items-center gap-3 text-nexass-dark/80">
+              <span class="w-5 h-5 bg-nexass-orange rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </span>
+              Archivio polizze e scadenzario automatico
+            </li>
+          </ul>
+        </div>
+
+        <!-- Prodotto 2: Gestionale -->
+        <div class="relative bg-nexass-dark rounded-3xl p-10 border-2 border-transparent hover:border-nexass-orange/50 transition-all group">
+          <div class="absolute top-6 right-6">
+            <span class="bg-nexass-orange text-white text-xs font-bold px-3 py-1 rounded-full">SaaS</span>
+          </div>
+          <div class="w-14 h-14 bg-nexass-orange/20 border border-nexass-orange/40 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+            <svg class="w-7 h-7 text-nexass-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-black text-white mb-2">Nexass Pro</h3>
+          <p class="text-white/60 text-lg leading-relaxed mb-8">
+            Il gestionale SaaS per intermediari assicurativi. Portafoglio clienti, scadenze, produzione e reportistica, tutto in un'unica dashboard.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-white/80">
+              <span class="w-5 h-5 bg-nexass-orange rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </span>
+              CRM clienti e gestione portafoglio
+            </li>
+            <li class="flex items-center gap-3 text-white/80">
+              <span class="w-5 h-5 bg-nexass-orange rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </span>
+              Alert automatici su rinnovi e scadenze
+            </li>
+            <li class="flex items-center gap-3 text-white/80">
+              <span class="w-5 h-5 bg-nexass-orange rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </span>
+              Dashboard produzione e KPI in tempo reale
+            </li>
+            <li class="flex items-center gap-3 text-white/80">
+              <span class="w-5 h-5 bg-nexass-orange rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </span>
+              Multi-agenzia con ruoli e permessi
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Integrazione -->
+      <div class="mt-8 bg-nexass-orange/5 border border-nexass-orange/20 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+        <div class="w-16 h-16 bg-nexass-orange/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+          <svg class="w-8 h-8 text-nexass-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="font-bold text-nexass-dark text-lg">Integrazione nativa tra i prodotti</h4>
+          <p class="text-nexass-muted mt-1">Emit e Pro parlano lo stesso linguaggio: emetti con Nexass Emit e i dati fluiscono automaticamente nel gestionale. Zero duplicazioni, zero errori manuali.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       COME FUNZIONA
+  ═══════════════════════════════════════════════ -->
+  <section id="come-funziona" class="py-24 bg-nexass-grey">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <span class="text-nexass-orange text-sm font-bold uppercase tracking-widest">Come funziona</span>
+        <h2 class="text-3xl md:text-4xl font-black text-nexass-dark mt-3">
+          Dal preventivo alla polizza in 3 passi
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 relative">
+        <!-- Connettore orizzontale desktop -->
+        <div class="hidden md:block absolute top-10 left-1/3 right-1/3 h-0.5 bg-nexass-orange/30"></div>
+
+        <!-- Step 1 -->
+        <div class="text-center">
+          <div class="w-20 h-20 bg-nexass-orange rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <span class="text-white font-black text-2xl">1</span>
+          </div>
+          <h3 class="font-black text-nexass-dark text-xl mb-3">Inserisci i dati</h3>
+          <p class="text-nexass-muted leading-relaxed">
+            Anagrafica veicolo e conducente. Nexass recupera automaticamente i dati da ATU e banche dati assicurative.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="text-center">
+          <div class="w-20 h-20 bg-nexass-dark rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <span class="text-nexass-orange font-black text-2xl">2</span>
+          </div>
+          <h3 class="font-black text-nexass-dark text-xl mb-3">Confronta e seleziona</h3>
+          <p class="text-nexass-muted leading-relaxed">
+            Tutte le tariffe disponibili in tempo reale. Scegli la proposta migliore per il cliente con un clic.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="text-center">
+          <div class="w-20 h-20 bg-nexass-orange rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <span class="text-white font-black text-2xl">3</span>
+          </div>
+          <h3 class="font-black text-nexass-dark text-xl mb-3">Emetti e gestisci</h3>
+          <p class="text-nexass-muted leading-relaxed">
+            La polizza viene emessa istantaneamente e archiviata nel gestionale. Il cliente riceve la documentazione via email.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       BRAND DELLA FAMIGLIA
+  ═══════════════════════════════════════════════ -->
+  <section id="brand" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <span class="text-nexass-orange text-sm font-bold uppercase tracking-widest">L'ecosistema</span>
+        <h2 class="text-3xl md:text-4xl font-black text-nexass-dark mt-3">
+          I brand della famiglia Nexass
+        </h2>
+        <p class="text-nexass-muted mt-4 max-w-2xl mx-auto text-lg">
+          Prodotti consumer costruiti sulla tecnologia Nexass, già sul mercato.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+
+        <!-- Tutelauto -->
+        <div class="bg-nexass-grey rounded-3xl p-10 flex flex-col gap-6">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 bg-[#4B3B9C] rounded-xl flex items-center justify-center flex-shrink-0">
+              <span class="text-white font-black text-sm">TA</span>
+            </div>
+            <div>
+              <h3 class="text-2xl font-black text-nexass-dark">Tutelauto</h3>
+              <p class="text-nexass-muted text-sm font-medium">RC Auto · CVT · Assistenza</p>
+            </div>
+          </div>
+          <p class="text-nexass-muted leading-relaxed">
+            Polizze auto per privati e professionisti. Dalla RC obbligatoria alla Kasko, tutto online con il supporto di agenti qualificati.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-[#4B3B9C]/10 text-[#4B3B9C] text-xs font-semibold px-3 py-1 rounded-full">#RCAuto</span>
+            <span class="bg-[#4B3B9C]/10 text-[#4B3B9C] text-xs font-semibold px-3 py-1 rounded-full">#CVT</span>
+            <span class="bg-[#4B3B9C]/10 text-[#4B3B9C] text-xs font-semibold px-3 py-1 rounded-full">#Kasko</span>
+          </div>
+        </div>
+
+        <!-- mia consulting -->
+        <div class="bg-nexass-grey rounded-3xl p-10 flex flex-col gap-6">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 bg-[#1A3A6B] rounded-xl flex items-center justify-center flex-shrink-0">
+              <span class="text-white font-black text-sm">mia</span>
+            </div>
+            <div>
+              <h3 class="text-2xl font-black text-nexass-dark">mia consulting</h3>
+              <p class="text-nexass-muted text-sm font-medium">RC Professionale · RC Medica · Cauzioni · Marine</p>
+            </div>
+          </div>
+          <p class="text-nexass-muted leading-relaxed">
+            Soluzioni assicurative per professionisti, imprese e settore medico. Cauzioni e Marine Pleasure per chi naviga oltre il convenzionale.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-[#1A3A6B]/10 text-[#1A3A6B] text-xs font-semibold px-3 py-1 rounded-full">#RCProfessionale</span>
+            <span class="bg-[#1A3A6B]/10 text-[#1A3A6B] text-xs font-semibold px-3 py-1 rounded-full">#RCMedica</span>
+            <span class="bg-[#1A3A6B]/10 text-[#1A3A6B] text-xs font-semibold px-3 py-1 rounded-full">#Cauzioni</span>
+            <span class="bg-[#1A3A6B]/10 text-[#1A3A6B] text-xs font-semibold px-3 py-1 rounded-full">#Marine</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nexass tech behind -->
+      <div class="mt-8 text-center">
+        <p class="text-nexass-muted/60 text-sm font-medium">
+          Tutti i brand della famiglia Nexass condividono la stessa infrastruttura tecnologica
+        </p>
+        <div class="flex items-center justify-center gap-3 mt-4">
+          <div class="h-px w-16 bg-nexass-orange/30"></div>
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 bg-nexass-orange rounded-full"></span>
+            <span class="text-nexass-dark font-black text-sm tracking-widest uppercase">Powered by Nexass</span>
+          </div>
+          <div class="h-px w-16 bg-nexass-orange/30"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       CTA / FORM CONTATTO
+  ═══════════════════════════════════════════════ -->
+  <section id="contatti" class="py-24 bg-nexass-dark">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <span class="text-nexass-orange text-sm font-bold uppercase tracking-widest">Early Access</span>
+      <h2 class="text-3xl md:text-5xl font-black text-white mt-3 mb-4">
+        Entra nella lista d'attesa
+      </h2>
+      <p class="text-white/60 text-lg mb-12 max-w-xl mx-auto">
+        Sii tra i primi intermediari a usare Nexass. Accesso anticipato, prezzi dedicati e supporto diretto dal team.
+      </p>
+
+      <form class="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 text-left" onsubmit="handleSubmit(event)">
+        <div class="grid md:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label class="block text-white/70 text-sm font-medium mb-2">Nome e Cognome *</label>
+            <input type="text" required placeholder="Mario Rossi"
+              class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-nexass-orange transition-colors" />
+          </div>
+          <div>
+            <label class="block text-white/70 text-sm font-medium mb-2">Email *</label>
+            <input type="email" required placeholder="mario@agenzia.it"
+              class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-nexass-orange transition-colors" />
+          </div>
+          <div>
+            <label class="block text-white/70 text-sm font-medium mb-2">Agenzia / Società</label>
+            <input type="text" placeholder="Agenzia Assicurativa Srl"
+              class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-nexass-orange transition-colors" />
+          </div>
+          <div>
+            <label class="block text-white/70 text-sm font-medium mb-2">Ruolo</label>
+            <select class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-nexass-orange transition-colors appearance-none">
+              <option value="" class="bg-nexass-dark">Seleziona...</option>
+              <option value="agente" class="bg-nexass-dark">Agente assicurativo</option>
+              <option value="broker" class="bg-nexass-dark">Broker</option>
+              <option value="subagente" class="bg-nexass-dark">Sub-agente</option>
+              <option value="compagnia" class="bg-nexass-dark">Compagnia assicurativa</option>
+              <option value="altro" class="bg-nexass-dark">Altro</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <label class="block text-white/70 text-sm font-medium mb-2">Quale prodotto ti interessa di più?</label>
+          <div class="flex flex-wrap gap-3">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="accent-nexass-orange w-4 h-4" />
+              <span class="text-white/70 text-sm">Nexass Emit (RCA/CVT)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="accent-nexass-orange w-4 h-4" />
+              <span class="text-white/70 text-sm">Nexass Pro (Gestionale)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="accent-nexass-orange w-4 h-4" />
+              <span class="text-white/70 text-sm">Entrambi</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit"
+          class="w-full bg-nexass-orange text-white py-4 rounded-xl font-bold text-lg hover:bg-nexass-orange-light transition-all orange-glow hover:scale-[1.02] active:scale-[0.98]">
+          Richiedi accesso anticipato →
+        </button>
+
+        <p class="text-white/30 text-xs text-center mt-4">
+          Nessuno spam. Ti contatteremo solo per l'accesso alla piattaforma.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer class="bg-nexass-darker py-12 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-1 select-none">
+        <span class="text-xl font-black text-white/90">NEX</span>
+        <span class="relative">
+          <span class="text-xl font-black text-white/90">A</span>
+          <span class="absolute -top-0.5 -right-0.5 w-2 h-2 bg-nexass-orange rounded-full"></span>
+        </span>
+        <span class="text-xl font-black text-white/90">SS</span>
+      </div>
+      <p class="text-white/30 text-sm text-center">
+        © 2025 Nexass. Il futuro dell'intermediazione assicurativa.
+      </p>
+      <div class="flex gap-6 text-white/40 text-sm">
+        <a href="#" class="hover:text-white/70 transition-colors">Privacy</a>
+        <a href="#" class="hover:text-white/70 transition-colors">Cookie</a>
+        <a href="#contatti" class="hover:text-white/70 transition-colors">Contatti</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = 'Richiesta inviata! Ti contatteremo presto.';
+      btn.disabled = true;
+      btn.classList.add('opacity-70', 'cursor-not-allowed');
+      btn.classList.remove('hover:scale-[1.02]');
+    }
+
+    // Smooth scroll offset per navbar fissa
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
